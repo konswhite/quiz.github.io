@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Книжковий квіз</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+text-align: center;
+background-color: #f4f4f4;
+padding: 20px;
+}
+.quiz-container {
+max-width: 600px;
+margin: auto;
+background: white;
+padding: 20px;
+border-radius: 10px;
+box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+h1 {
+font-size: 24px;
+}
+.question {
+margin-top: 20px;
+font-weight: bold;
+}
+.options {
+list-style: none;
+padding: 0;
+}
+.options li {
+margin: 10px 0;
+}
+.result {
+display: none;
+margin-top: 20px;
+}
+.result img {
+width: 100%;
+max-width: 300px;
+border-radius: 10px;
+box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+</style>
+</head>
+<body>
+
+<div class="quiz-container">
+<h1>Вгадай книгу!</h1>
+
+<div class="question">1. Який жанр цієї книги?</div>
+<ul class="options">
+<li><input type="checkbox" class="answer" value="wrong"> Романтична історія</li>
+<li><input type="checkbox" class="answer" value="correct"> Сатира та містика</li>
+<li><input type="checkbox" class="answer" value="wrong"> Військові пригоди</li>
+<li><input type="checkbox" class="answer" value="wrong"> Соціальна драма</li>
+</ul>
+
+<div class="question">2. Що стає рушійною силою подій?</div>
+<ul class="options">
+<li><input type="checkbox" class="answer" value="correct"> Магія та забобони</li>
+<li><input type="checkbox" class="answer" value="wrong"> Судова справа</li>
+<li><input type="checkbox" class="answer" value="wrong"> Політичні інтриги</li>
+<li><input type="checkbox" class="answer" value="wrong"> Родинні конфлікти</li>
+</ul>
+
+<div class="question">3. Головний герой – представник влади. Хто він?</div>
+<ul class="options">
+<li><input type="checkbox" class="answer" value="wrong"> Суддя</li>
+<li><input type="checkbox" class="answer" value="correct"> Військовий командир</li>
+<li><input type="checkbox" class="answer" value="wrong"> Поміщик</li>
+<li><input type="checkbox" class="answer" value="wrong"> Купець</li>
+</ul>
+
+<div class="question">4. Яке головне випробування чекає на героя?</div>
+<ul class="options">
+<li><input type="checkbox" class="answer" value="wrong"> Захист міста від ворога</li>
+<li><input type="checkbox" class="answer" value="wrong"> Любовний трикутник</li>
+<li><input type="checkbox" class="answer" value="correct"> Боротьба з чаклунством та дурістю</li>
+<li><input type="checkbox" class="answer" value="wrong"> Подорож у далекі краї</li>
+</ul>
+
+<div class="question">5. Який режисер міг би зняти цю книгу?</div>
+<ul class="options">
+<li><input type="checkbox" class="answer" value="correct"> Стенлі Кубрик (чорний гумор і абсурд)</li>
+<li><input type="checkbox" class="answer" value="wrong"> Крістофер Нолан (заплутаний сюжет)</li>
+<li><input type="checkbox" class="answer" value="wrong"> Квентін Тарантіно (екшн і жорстокість)</li>
+<li><input type="checkbox" class="answer" value="wrong"> Софія Коппола (меланхолія та стиль)</li>
+</ul>
+
+<div class="result" id="result">
+<h2>Правильна відповідь!</h2>
+<p>Ця книга – «Конотопська відьма» Григорія Квітки-Основ’яненка.</p>
+<img src="https://static.yakaboo.ua/media/catalog/product/c/4/c43a4f3652d6231eed082a2e2a6e9635.jpg" alt="----">
+</div>
+</div>
+
+<script>
+document.querySelectorAll('.answer').forEach(input => {
+input.addEventListener('change', () => {
+let allCorrect = true;
+document.querySelectorAll('.question').forEach((q, index) => {
+let answers = q.nextElementSibling.querySelectorAll('.answer');
+let isCorrect = false;
+answers.forEach(a => {
+if (a.checked && a.value === "correct") isCorrect = true;
+if (a.checked && a.value === "wrong") allCorrect = false;
+});
+if (!isCorrect) allCorrect = false;
+});
+
+if (allCorrect) {
+document.getElementById('result').style.display = 'block';
+} else {
+document.getElementById('result').style.display = 'none';
+}
+});
+});
+</script>
+
+</body>
+</html>
